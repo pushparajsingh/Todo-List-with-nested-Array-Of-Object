@@ -3,7 +3,7 @@ import { Button, Table } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import { FcPlus } from "react-icons/fc";
-import { Changename,ProjDelete,ProjAdd } from "../redux/action/action";
+import { Changename, ProjDelete, ProjAdd } from "../redux/action/action";
 import { useNavigate } from "react-router-dom";
 const Projectshow = () => {
   const data = useSelector((state) => state.rootReducer.data);
@@ -12,7 +12,7 @@ const Projectshow = () => {
   const [name, setname] = useState({
     projname: "",
     id: null,
-    projAdd:""
+    projAdd: "",
   });
 
   const save = () => {
@@ -23,10 +23,10 @@ const Projectshow = () => {
   return (
     <div>
       <br />
-      <h1 style={{ color: "white" }}>Projects</h1>
+      <h1 style={{ color: "white" }}>Landing Page</h1>
       <div className="box">
         <br />
-        <h2>Projects</h2>
+        <h2>Landing Page</h2>
         <br />
         <div className="box2">
           <input
@@ -46,12 +46,14 @@ const Projectshow = () => {
           <div className="over">
             <Table>
               <tbody>
-              
                 {data?.map((value, index) => {
                   return (
                     <>
                       <tr key={index} className="prj">
-                        <td align="left" onClick={() => Router(`/feature/${index}`)}>
+                        <td
+                          align="left"
+                          onClick={() => Router(`/feature/${index}`)}
+                        >
                           &nbsp;&nbsp;
                           {value.id})&nbsp;
                           {value.name}
@@ -75,8 +77,15 @@ const Projectshow = () => {
                 })}
               </tbody>
             </Table>
-            <input type="text" id="position" placeholder="Add A Project Name" onChange={(e)=>{setname({...name,projAdd:e.target.value})}}/>
-            <FcPlus id="fix" onClick={()=>dispatch(ProjAdd(name.projAdd))}/>
+            <input
+              type="text"
+              id="position"
+              placeholder="Add A Project Name"
+              onChange={(e) => {
+                setname({ ...name, projAdd: e.target.value });
+              }}
+            />
+            <FcPlus id="fix" onClick={() => dispatch(ProjAdd(name.projAdd))} />
           </div>
         </div>
       </div>
